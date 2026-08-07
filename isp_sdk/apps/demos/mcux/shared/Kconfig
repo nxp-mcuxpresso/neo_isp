@@ -1,0 +1,120 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_COMPONENT_middleware.ispsdk.display_task
+    bool "Display task for ISP examples"
+    help
+        "Display control for ISP examples."
+
+config MCUX_COMPONENT_middleware.ispsdk.usb_cdc_acm
+    bool "Include USB com port"
+    select MCUX_COMPONENT_middleware.usb.common_header
+    select MCUX_COMPONENT_middleware.usb.device.common_header
+    select USB_DEVICE_CONFIG_ROOT2_TEST
+    default n
+    help
+        "Add USB init code that enumerates this device as virtual com port (USB->CDC->ACM)."
+
+config MCUX_COMPONENT_middleware.ispsdk.eth
+    bool "Include Ethernet (PHY + stack)"
+    select MCUX_COMPONENT_driver.netc
+    select MCUX_COMPONENT_middleware.lwip
+    default n
+    help
+        "Add Ethernet support with LwIP stack and NETC PHY driver for network connectivity. Note that MCUX_COMPONENT_middleware.lwip component configuration comes from proj.conf (e.g. see prj_eth.conf for isp_ccl example)."
+
+config MCUX_COMPONENT_middleware.ispsdk.tcp_server
+    bool "Include TCP server"
+    default n
+    select MCUX_COMPONENT_middleware.lwip
+    help
+        "Add TCP server (requires LwIp availability)."
+
+config MCUX_COMPONENT_middleware.ispsdk.camera_task
+    bool "Control task for ISP demos"
+    select MCUX_COMPONENT_middleware.ispsdk.ccl
+    help
+        "Free rtos task, for controling camera."
+
+choice MCUX_MISC_middleware.ispsdk.example.camera_selection
+    prompt "Example camera selection"
+    default MCUX_MISC_middleware.ispsdk.example.camera_selection.ovx3c
+    help
+        "Select camera sensor for ISP example."
+
+    config MCUX_MISC_middleware.ispsdk.example.camera_selection.ovx3c
+        bool "ovx3c10"
+
+    config MCUX_MISC_middleware.ispsdk.example.camera_selection.new_sensor
+        bool "new_sensor"
+
+endchoice
+
+config MCUX_COMPONENT_middleware.ispsdk.isp_initial_cfg
+    bool "Add binary ISP initial cfg block"
+    help
+        "Add binary block with ISP initial configuration"
+
+config MCUX_MISC_middleware.ispsdk.isp_initial_cfg.autogenerate
+    bool "Autogenerate from .ini during build"
+    depends on MCUX_COMPONENT_middleware.ispsdk.isp_initial_cfg
+    help
+        "Generate ISP initial configuration during build."
+
+config MCUX_COMPONENT_middleware.ispsdk.neo_control.tuning_database
+    bool "Add neo_control tunning database"
+    depends on MCUX_COMPONENT_middleware.ispsdk.ccf
+    help
+        "Add binary block with ISP initial configuration"
+
+config MCUX_MISC_middleware.ispsdk.neo_control.tuning_database.autogenerate
+    bool "Auto-generate neo_control tunning database"
+    depends on MCUX_COMPONENT_middleware.ispsdk.neo_control.tuning_database
+    help
+        "Generate tunning database for selected camera during build."
+
+
+choice MCUX_MISC_middleware.ispsdk.stdout
+    prompt "Override of stdout for demo"
+    default MCUX_MISC_middleware.ispsdk.stdout.default if MCUX_COMPONENT_middleware.ispsdk.ccf.lt.transport.usb
+    default MCUX_MISC_middleware.ispsdk.stdout.default
+
+config MCUX_MISC_middleware.ispsdk.stdout.default
+    bool "No change in stdout for ispsdk demos"
+
+config MCUX_COMPONENT_middleware.ispsdk.stdout.usb
+    bool "redirect to USB"
+    select MCUX_COMPONENT_middleware.ispsdk.usb_cdc_acm
+
+endchoice
+
+config ISP_SDK_CAMERA_COUNT
+    int "Number of connected cameras"
+    depends on MCUX_COMPONENT_middleware.ispsdk.camera_task
+    default 1
+    help
+        "How many cameras should run."
+
+choice MCUX_MISC_middleware.ispsdk.frame_process_mode
+    prompt "ISP's frame processing mode"
+    default MCUX_MISC_middleware.ispsdk.frame_process_mode.m2m
+
+config MCUX_MISC_middleware.ispsdk.frame_process_mode.m2m
+    bool "memory-to-memory"
+
+config MCUX_MISC_middleware.ispsdk.frame_process_mode.stream
+    bool "streaming"
+
+endchoice
+config ISP_SDK_CAPTURE_MODE
+    string
+    default "CCL_CAP_MODE_M2M" if MCUX_MISC_middleware.ispsdk.frame_process_mode.m2m
+    default "CCL_CAP_MODE_STREAM" if MCUX_MISC_middleware.ispsdk.frame_process_mode.stream
+
+config MCUX_MISC_middleware.ispsdk.enable_files_usb
+    bool "Enabling sending images over USB"
+    depends on MCUX_COMPONENT_middleware.ispsdk.stdout.usb
+    default false
+    help
+        "Enabling sending images over USB."

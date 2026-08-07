@@ -1,0 +1,24 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+
+menu "ISP SDK"
+    depends on (MCUX_HW_DEVICE_MIMX9596)
+
+    config MCUX_MISC_middleware.ispsdk.socrev
+        string "SoC Revision"
+        default "B0"
+        help
+            "Specifies the SoC revision. (e.g. A1,B0,...)"
+
+    source "middleware/neo_isp/isp_sdk/apps/demos/mcux/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/cca/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/ccf/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/ccl/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/cgd/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/ilog/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/isp_platform/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/ispdrv_usr/build-mcuxsdk/Kconfig"
+    source "middleware/neo_isp/isp_sdk/modules/utils/build-mcuxsdk/Kconfig"
+endmenu

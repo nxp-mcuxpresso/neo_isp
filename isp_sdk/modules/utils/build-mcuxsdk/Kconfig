@@ -1,0 +1,29 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+menu "Utils"
+    config MCUX_COMPONENT_middleware.ispsdk.utils.gpio
+        bool "gpio"
+        select MCUX_COMPONENT_middleware.isp-ilog
+        help
+            "Provides GPIO utility functions for ISP SDK"
+
+    config MCUX_COMPONENT_middleware.ispsdk.utils.i2c
+        bool "I2C"
+        select MCUX_COMPONENT_middleware.ispsdk.ilog
+        help
+            "Provides I2C utility functions for ISP SDK"
+
+    config MCUX_COMPONENT_middleware.ispsdk.utils.edma
+        bool "Edma"
+        select MCUX_COMPONENT_middleware.ispsdk.ilog
+        help
+            "Provides edma functions for ISP SDK"
+
+    config MCUX_COMPONENT_middleware.ispsdk.utils.misc
+        bool "Misc"
+        select MCUX_COMPONENT_middleware.ispsdk.ilog
+        help
+            "Provides miscellaneous utility functions for ISP SDK"
+endmenu

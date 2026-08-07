@@ -1,0 +1,13 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_COMPONENT_middleware.ispsdk.cgd
+    bool "Camera generic driver (CGD)"
+    select MCUX_COMPONENT_middleware.ispsdk.utils.gpio
+    select MCUX_COMPONENT_middleware.ispsdk.utils.i2c
+    select MCUX_COMPONENT_middleware.ispsdk.utils.edma
+    select MCUX_COMPONENT_middleware.ispsdk.platform
+    select MCUX_COMPONENT_middleware.ispsdk.ilog
+    help
+        "Provides unified camera interface for the rest of ISP SDK modules, while handling camera hardware specifics."

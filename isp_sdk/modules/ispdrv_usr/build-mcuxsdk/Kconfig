@@ -1,0 +1,9 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_COMPONENT_middleware.ispsdk.ispdrv_usr
+    bool "Isp driver (user space)"
+    select MCUX_COMPONENT_middleware.ispsdk.ilog
+    help
+        "Provides platform specific layer for ISP."

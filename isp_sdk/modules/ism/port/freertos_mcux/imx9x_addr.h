@@ -1,0 +1,90 @@
+/*
+ * Copyright 2022-2026 NXP
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
+ */
+
+#ifndef IMX9X_ADDR_H
+#define IMX9X_ADDR_H
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+// TODO nxf90122 upstream to modules/mxsdk-imx95_m7/devices/MIMX9596/MIMX9596_cm7_COMMON.h
+
+/*!
+ * @addtogroup Peripheral_memory_map
+ * @{
+ */
+/* Peripheral and SRAM base address */
+#define PERIPH_BASE     (0x4AC00000UL)  /* (Peripheral) Base Address */
+
+#define CAMERA_CSR_BASE     (PERIPH_BASE + 0x00010000UL)
+#define RX_TX_PHY_CSR_BASE  (PERIPH_BASE + 0x00120000UL)
+#define CSI0_BASE           (PERIPH_BASE + 0x00130000UL)
+#define CSI1_BASE           (PERIPH_BASE + 0x00140000UL)
+#define ISI_CHANNEL0_BASE   (PERIPH_BASE + 0x00150000UL)
+#define ISI_CHANNEL1_BASE   (PERIPH_BASE + 0x00160000UL)
+#define ISI_CHANNEL2_BASE   (PERIPH_BASE + 0x00170000UL)
+#define ISI_CHANNEL3_BASE   (PERIPH_BASE + 0x00180000UL)
+#define ISI_CHANNEL4_BASE   (PERIPH_BASE + 0x00190000UL)
+#define ISI_CHANNEL5_BASE   (PERIPH_BASE + 0x001A0000UL)
+#define ISI_CHANNEL6_BASE   (PERIPH_BASE + 0x001B0000UL)
+#define ISI_CHANNEL7_BASE   (PERIPH_BASE + 0x001C0000UL)
+#define CAMID_CSR_BASE      (PERIPH_BASE + 0x001E0000UL)
+#define ISP_BASE            (PERIPH_BASE + 0x00200000UL)
+#define EDMA_MP_BASE        (PERIPH_BASE + 0x00210000UL)
+#define EDMA_CH0_BASE       (PERIPH_BASE + 0x00220000UL)
+#define EDMA_CH1_BASE       (PERIPH_BASE + 0x00228000UL)
+#define EDMA_CH2_BASE       (PERIPH_BASE + 0x00230000UL)
+#define EDMA_CH3_BASE       (PERIPH_BASE + 0x00238000UL)
+#define EDMA_CH4_BASE       (PERIPH_BASE + 0x00240000UL)
+#define EDMA_CH5_BASE       (PERIPH_BASE + 0x00248000UL)
+#define EDMA_CH6_BASE       (PERIPH_BASE + 0x00250000UL)
+#define EDMA_CH7_BASE       (PERIPH_BASE + 0x00258000UL)
+#define EDMA_CH8_BASE       (PERIPH_BASE + 0x00260000UL)
+#define EDMA_CH9_BASE       (PERIPH_BASE + 0x00268000UL)
+#define EDMA_CH10_BASE      (PERIPH_BASE + 0x00270000UL)
+#define EDMA_CH11_BASE      (PERIPH_BASE + 0x00278000UL)
+#define EDMA_CH12_BASE      (PERIPH_BASE + 0x00280000UL)
+#define EDMA_CH13_BASE      (PERIPH_BASE + 0x00288000UL)
+#define EDMA_CH14_BASE      (PERIPH_BASE + 0x00290000UL)
+#define EDMA_CH15_BASE      (PERIPH_BASE + 0x00298000UL)
+#define EDMA_CH16_BASE      (PERIPH_BASE + 0x002A0000UL)
+#define EDMA_CH17_BASE      (PERIPH_BASE + 0x002A8000UL)
+#define EDMA_CH18_BASE      (PERIPH_BASE + 0x002B0000UL)
+#define EDMA_CH19_BASE      (PERIPH_BASE + 0x002B8000UL)
+#define EDMA_CH20_BASE      (PERIPH_BASE + 0x002C0000UL)
+#define EDMA_CH21_BASE      (PERIPH_BASE + 0x002C8000UL)
+#define EDMA_CH22_BASE      (PERIPH_BASE + 0x002D0000UL)
+#define EDMA_CH23_BASE      (PERIPH_BASE + 0x002D8000UL)
+#define EDMA_CH24_BASE      (PERIPH_BASE + 0x002E0000UL)
+#define EDMA_CH25_BASE      (PERIPH_BASE + 0x002E8000UL)
+#define EDMA_CH26_BASE      (PERIPH_BASE + 0x002F0000UL)
+#define EDMA_CH27_BASE      (PERIPH_BASE + 0x002F8000UL)
+#define EDMA_CH28_BASE      (PERIPH_BASE + 0x00300000UL)
+#define EDMA_CH29_BASE      (PERIPH_BASE + 0x00308000UL)
+#define EDMA_CH30_BASE      (PERIPH_BASE + 0x00310000UL)
+#define EDMA_CH31_BASE      (PERIPH_BASE + 0x00318000UL)
+/*! @} */ /* Peripheral_memory_map */
+
+#define ISP                 ((ISP_TypeDef *) ISP_BASE)
+#define EDMA                ((EDMA_TypeDef *) EDMA_MP_BASE)
+
+
+#ifdef USE_EDMA_DESCR
+// NOTE this
+#define SRAM_BASE       (0x20000000UL) TODO this addres is wrong  /* TODO the device uses DDR as RAM */
+#define EDMA_DESCRIPTORS_BASE (SRAM_BASE)
+#define EDMA_DESCRIPTORS    ((EDMA_TCD_TypeDef *) EDMA_DESCRIPTORS_BASE)
+#endif
+
+/*! @} */ /* Peripheral_declaration */
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* IMX9X_ADDR_H */

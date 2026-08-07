@@ -1,0 +1,14 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+
+menu "ISP SDK demo"
+
+if MCUX_MISC_middleware.ispsdk.demos.isp_ccl
+    source "middleware/neo_isp/isp_sdk/apps/demos/mcux/isp_ccl/Kconfig"
+endif
+
+source "middleware/neo_isp/isp_sdk/apps/demos/mcux/shared/Kconfig"
+
+endmenu

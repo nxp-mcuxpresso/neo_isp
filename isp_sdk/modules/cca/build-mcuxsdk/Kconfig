@@ -1,0 +1,27 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_COMPONENT_middleware.ispsdk.cca
+    bool "Camera control abstraction (CCA)"
+    select MCUX_COMPONENT_middleware.ispsdk.platform
+    select MCUX_COMPONENT_middleware.ispsdk.ilog
+    help
+        "Provides unified interface for ISP-SDk modules to wrap different cameras and different camera control functions"
+
+choice MCUX_MISC_middleware.ispsdk.cca.ccfselection
+    prompt "Control library"
+    default MCUX_COMPONENT_middleware.ispsdk.cca.ccfselection.neo_control
+    depends on MCUX_COMPONENT_middleware.ispsdk.cca
+
+config MCUX_COMPONENT_middleware.ispsdk.cca.ccfselection.neo_control
+    bool "NXP's Camera control functions (CCF)"
+    select MCUX_COMPONENT_middleware.ispsdk.ccf
+
+config MCUX_COMPONENT_middleware.ispsdk.cca.ccfselection.ccf_custom
+    bool "Custom Camera control functions (CCF)"
+    select MCUX_COMPONENT_middleware.ispsdk.ccf_custom
+
+endchoice
+
+

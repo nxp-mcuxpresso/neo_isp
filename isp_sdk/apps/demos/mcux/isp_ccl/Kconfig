@@ -1,0 +1,28 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_MISC_middleware.ispsdk.gcc_coverage
+    bool "Enable GCC coverage for files"
+    help
+        "Enable coverage for files - expects GCC compiler."
+
+config MCUX_MISC_middleware.ispsdk.gcc_coverage.override_placement
+    bool "Use linker script to move some coverage variables"
+    depends on MCUX_MISC_middleware.ispsdk.gcc_coverage
+    help
+        "This needs specific section to be manually added to linker script."
+
+config MCUX_MISC_middleware.ispsdk.gcc_coverage.select_files
+    bool "Select specific files for coverage"
+    depends on MCUX_MISC_middleware.ispsdk.gcc_coverage
+    help
+        "If disabled, all files are added to coverage. If enabled only specific files defined by filter are added to coverage report."
+
+config MCUX_MISC_middleware.ispsdk.gcc_coverage.file_filters
+    string "Filters"
+    depends on MCUX_MISC_middleware.ispsdk.gcc_coverage
+    depends on MCUX_MISC_middleware.ispsdk.gcc_coverage.select_files
+    default "/examples/demo_apps/isp_ccl/ /middleware/neo_isp/isp_sdk/"
+    help
+        "File path filter for coverage (files with this string will be included). Use space to separate multiple items."

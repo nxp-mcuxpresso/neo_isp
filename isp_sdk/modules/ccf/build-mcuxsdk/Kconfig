@@ -1,0 +1,35 @@
+# Copyright 2024 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_COMPONENT_middleware.ispsdk.ccf
+    bool "NXP Camera control functions (CCF)"
+    help
+        "Provides sensor(camera) and ISP settings based on current scene conditions."
+
+
+config MCUX_COMPONENT_middleware.ispsdk.ccf.lt
+    bool "Inlcude live tunning code"
+    depends on MCUX_COMPONENT_middleware.ispsdk.ccf
+    select MCUX_COMPONENT_middleware.ispsdk.ccf.checksum
+    help
+        "Includes code that allows connection to this device from PC tool (via NXP Camera control functions)."
+
+choice MCUX_COMPONENT_middleware.ispsdk.ccf.lt.transport
+    prompt "Live tuning transport selection"
+    depends on MCUX_COMPONENT_middleware.ispsdk.ccf.lt
+    default MCUX_COMPONENT_middleware.ispsdk.ccf.lt.transport.usb
+    help
+        "Select transport mechanism for live tuning communication."
+
+    config MCUX_COMPONENT_middleware.ispsdk.ccf.lt.transport.usb
+    bool "USB"
+    select MCUX_COMPONENT_middleware.ispsdk.usb_cdc_acm
+
+    config MCUX_COMPONENT_middleware.ispsdk.ccf.lt.transport.eth
+    bool "ETH"
+    select MCUX_COMPONENT_middleware.ispsdk.tcp_server
+    help
+        "For eth transport to work, build needs to be reconfigured via prj_eth.conf (or just add -DISPSDK_ENABLE_ETH=1 to west build command)."
+
+endchoice

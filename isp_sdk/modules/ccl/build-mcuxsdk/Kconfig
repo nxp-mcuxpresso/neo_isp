@@ -1,0 +1,14 @@
+# Copyright 2026 NXP
+#
+# SPDX-License-Identifier: BSD-3-Clause
+
+config MCUX_COMPONENT_middleware.ispsdk.ccl
+    bool "Camera control library (CCL)"
+    select MCUX_COMPONENT_middleware.ispsdk.platform
+    select MCUX_COMPONENT_middleware.ispsdk.ispdrv_usr
+    select MCUX_COMPONENT_middleware.ispsdk.cca
+    select MCUX_COMPONENT_middleware.ispsdk.cgd
+    select MCUX_COMPONENT_middleware.ispsdk.utils.misc
+    select MCUX_COMPONENT_middleware.ispsdk.ilog
+    help
+        "Provides threads and data transfers between all ISP SDK modules."
