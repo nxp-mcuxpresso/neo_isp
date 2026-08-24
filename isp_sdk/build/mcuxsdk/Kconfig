@@ -3,9 +3,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 
-menu "ISP SDK"
+
+menuconfig MCUX_MISC_middleware.ispsdk
+    bool "ISP SDK"
     depends on (MCUX_HW_DEVICE_MIMX9596)
 
+if MCUX_MISC_middleware.ispsdk
     config MCUX_MISC_middleware.ispsdk.socrev
         string "SoC Revision"
         default "B0"
@@ -21,4 +24,4 @@ menu "ISP SDK"
     source "middleware/neo_isp/isp_sdk/modules/isp_platform/build-mcuxsdk/Kconfig"
     source "middleware/neo_isp/isp_sdk/modules/ispdrv_usr/build-mcuxsdk/Kconfig"
     source "middleware/neo_isp/isp_sdk/modules/utils/build-mcuxsdk/Kconfig"
-endmenu
+endif
