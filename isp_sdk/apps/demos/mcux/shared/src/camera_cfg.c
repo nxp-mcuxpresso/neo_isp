@@ -3,7 +3,7 @@
  *
  * SPDX-License-Identifier: BSD-3-Clause
  */
-/* Generated on 2026-08-21 16:35:13 from ox03c10_1280_neocontrol.ini for IMX95_B0 */
+/* Generated on 2026-08-24 13:49:23 from ox03c10_1280_neocontrol.ini for IMX95_B0 */
 #include "isp_task.h"
 
 DDR_INIT const isp_CtxHw_t gIspCfg = {

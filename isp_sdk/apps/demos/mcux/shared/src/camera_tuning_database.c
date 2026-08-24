@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: BSD-3-Clause
  */
 /******************************************************************************/
-// file auto-generated on 21.08.2026 from ox03c10_ccf_tuning.yaml
+// file auto-generated on 24.08.2026 from ox03c10_ccf_tuning.yaml
 
 #include <stdint.h>
 
