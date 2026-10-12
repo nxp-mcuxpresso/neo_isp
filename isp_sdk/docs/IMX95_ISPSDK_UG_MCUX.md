@@ -101,10 +101,10 @@ This software release applies to the i.MX 95 LPD5 EVK-19 B0 board. Follow the in
 The ISP SDK is fully integrated into the MCUX SDK as a middleware repository.
 
 - To obtain MCUX-SDK see:
-[Install SDK](https://mcuxpresso.nxp.com/mcuxsdk/latest/html/gsd/install/index.html).
+[Install SDK](https://docs.mcuxpresso.nxp.com/mcuxsdk/latest/gsd/install/index.html).
 
 - To install all necessary development tools, see:
-[Development Tools Installation](https://mcuxpresso.nxp.com/mcuxsdk/latest/html/gsd/installation.html).
+[Development Tools Installation](https://docs.mcuxpresso.nxp.com/mcuxsdk/latest/gsd/installation.html).
 
 ## Folder structure
 
